@@ -12,7 +12,7 @@ pipeline {
             steps {
                 sh '''
                 ls
-                cd ./nginx
+                cd ./ngnix
                 docker build -t eu.gcr.io/lbg-cloud-incubation/swells-nginx-lbg-demo:latest -t eu.gcr.io/lbg-cloud-incubation/swells-nginx-lbg-demo:build-$BUILD_NUMBER .
                 '''
            }
