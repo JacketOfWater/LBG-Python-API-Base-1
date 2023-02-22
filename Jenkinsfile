@@ -11,6 +11,7 @@ pipeline {
         stage('Build Custom NGINX') {
             steps {
                 sh '''
+                chmod 777 ./nginx
                 cd ./nginx
                 docker build -t eu.gcr.io/lbg-cloud-incubation/swells-nginx-lbg-demo:latest -t eu.gcr.io/lbg-cloud-incubation/swells-nginx-lbg-demo:build-$BUILD_NUMBER .
                 '''
