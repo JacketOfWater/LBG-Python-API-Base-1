@@ -32,8 +32,8 @@ pipeline {
                 sh '''
                 cd ./kubernetes
                 kubectl apply -f .
-                kubectl rollout restart deployment flask-deployment
-                kubectl rollout restart deployment nginx-deployment
+                kubectl rollout restart deployment python-app
+                kubectl rollout restart deployment nginxproxy
                 '''
             }
         }
