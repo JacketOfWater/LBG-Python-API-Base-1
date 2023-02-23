@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: python-app
+  namespace: {{ns}}
   labels:
     app: python
 spec:
@@ -30,6 +31,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: python-app-service
+  namespace: {{ns}}
 spec:
   type: ClusterIP
   selector:

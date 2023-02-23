@@ -1,7 +1,17 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: {{ns}}
+  labels:
+    name: {{ns}}
+    
+---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginxproxy
+  namespace: {{ns}}
   labels:
     app: proxy
 spec:
@@ -30,6 +40,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: nginxproxy
+  namespace: {{ns}}
 spec:
   type: LoadBalancer
   selector:

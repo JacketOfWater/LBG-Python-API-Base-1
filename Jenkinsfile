@@ -27,6 +27,25 @@ pipeline {
                 '''
             }
         }
+        stage('code branch Stop and Clean and deal with multiply namespaces with sed substition in yaml') {
+            steps {
+                script {
+			        if ("${GIT_BRANCH}" == 'origin/main') {
+				        sh '''
+				        cd kubernetes
+                        sed -e 's,{{ns}},production,g;' *.yml | kubectl apply -f -
+                        
+
+				        '''
+			        } else if ("${GIT_BRANCH}" == 'origin/development') {
+				        sh '''
+				        cd kubernetes
+                        sed -e 's,{{ns}},development,g;' *.yml | kubectl apply -f -
+				        '''
+			        }
+		        }
+            }
+        }
         stage('Deploy') {
             steps {
                 sh '''
