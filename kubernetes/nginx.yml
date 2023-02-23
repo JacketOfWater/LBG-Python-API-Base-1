@@ -65,9 +65,9 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 80
-volumeMounts:
-        - name: nginx-config-volume            # referencing the volume name
-          mountPath: /etc/nginx/conf.d  # specifying the mount location
+  volumeMounts:
+  - name: nginx-config-volume           
+    mountPath: /etc/nginx/conf.d  # specifying the mount location
 
 
 
