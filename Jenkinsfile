@@ -48,11 +48,23 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh '''
-                cd ./kubernetes
-                kubectl apply -f .
-                kubectl rollout restart deployment python-app
-                kubectl rollout restart deployment nginxproxy
+                
+                script {
+			        if ("${GIT_BRANCH}" == 'origin/main') {
+				        sh '''
+				        kubectl rollout restart deployment --namespace=production python-app
+                        kubectl rollout restart deployment --namespace=production nginxproxy
+                        
+
+				        '''
+			        } else if ("${GIT_BRANCH}" == 'origin/development') {
+				        sh '''
+				        kubectl rollout restart deployment --namespace=development python-app
+                        kubectl rollout restart deployment --namespace=development nginxproxy
+				        '''
+			        }
+		        }
+                
                 '''
             }
         }
